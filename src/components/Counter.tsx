@@ -1,41 +1,18 @@
 import * as React from 'react';
 
 interface Props {
-  test: string
+  value: number;
+  onIncrement(): void;
+  onDecrement(): void;
 }
 
-interface State {
-  counter: number;
-}
-
-class Counter extends React.Component<Props, State> {
-  public state: State = {
-    counter: 0
-  };
-
-  public onIncrement = (): void => {
-    this.setState(
-      ({ counter }) => ({ counter: counter + 1 })
-    );
-  }
-
-  public onDecrement = (): void => {
-    this.setState(
-      ({ counter }) => ({ counter: counter - 1 })
-    );
-  }
-
-  public render() {
-    const { onIncrement, onDecrement } = this;
-    return (
-      <div>
-        <h1>카운터</h1>
-        <h3>{this.state.counter}</h3>
-        <button onClick={onIncrement}>+</button>
-        <button onClick={onDecrement}>-</button>
-      </div>
-    );
-  }
-}
+const Counter: React.SFC<Props> = ({ value, onIncrement, onDecrement }) => (
+  <div>
+    <h2>카운터</h2>
+    <h3>{value}</h3>
+    <button onClick={onIncrement}>+</button>
+    <button onClick={onDecrement}>-</button>
+  </div>
+);
 
 export default Counter;
